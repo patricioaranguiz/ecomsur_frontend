@@ -22,7 +22,7 @@ version: 0.1
 #      - ng build --prod
 artifacts:
   files:
-#    - "**/*"
-    - appspec.yml
+    - "**/*"
+#    - appspec.yml
 #  discard-paths: no
 #  base-directory: dist/frontend
