@@ -3,7 +3,7 @@ version: 0.1
 phases:
   install:
     commands:
-      - echo installing nodejs...
+    - echo installing nodejs...
       - curl -sL https://deb.nodesource.com/setup_12.x | bash -
       - apt-get install -y nodejs
       - echo installing yarn...
@@ -22,7 +22,7 @@ phases:
       - ng build --prod
 artifacts:
   files:
-    - "dist/"
+    - "**/*"
     - appspec.yml
 #  discard-paths: no
 #  base-directory: dist/frontend
