@@ -22,7 +22,9 @@ phases:
       - ng build --prod
 artifacts:
   files:
-    - "**/*"
+#    - "**/*"
     - appspec.yml
+    - codedeploy/*
+    - dist/*
 #  discard-paths: no
 #  base-directory: dist/frontend
