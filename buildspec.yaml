@@ -25,6 +25,6 @@ artifacts:
 #    - "**/*"
     - appspec.yml
     - codedeploy/*
-    - dist/*
+    - dist/**/*
 #  discard-paths: no
 #  base-directory: dist/frontend
