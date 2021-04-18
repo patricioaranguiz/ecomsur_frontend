@@ -1,5 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source: /dist
     destination: /usr/share/nginx/html
+hooks:
+  BeforeInstall:
+    - location: codedeploy/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: codedeploy/stop_server
+      timeout: 300
+      runas: root
