@@ -29,17 +29,18 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authSvc.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
   submit() {
     this.submitStatus = true;
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
       this.authSvc.login(this.registerForm.value).subscribe(
-        (data: any) => {
-          sessionStorage.setItem('token', data.token);
-          sessionStorage.setItem('currentUser', JSON.stringify(data.currentUser))
-          this.router.navigate(['/rr-hh']);
+        (data) => {
+          this.router.navigate(['/']);
         },
         (error1) => {
           let errorMessage = '';

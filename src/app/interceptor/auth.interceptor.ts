@@ -3,41 +3,42 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpErrorResponse
+  HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {AuthService} from '../services/auth.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
   constructor(private authSvc: AuthService) {}
 
-  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token: string = localStorage.getItem('token');
+  intercept(
+    req: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    const currentUser: User = JSON.parse(sessionStorage.getItem('currentUser'));
 
     let request = req;
 
-    if (token) {
+    if (currentUser) {
       request = req.clone({
         setHeaders: {
-          authorization: `Bearer ${ token }`
-        }
+          authorization: `Bearer ${currentUser.token}`,
+        },
       });
     }
 
-    return next.handle(request)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          if(err.status === 401) {
-
-          } else if(err.status === 403) {
-            this.authSvc.logout();
-          }
-          return throwError(err)
-        })
-      )
+    return next.handle(request).pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status === 401) {
+        } else if (err.status === 403) {
+          this.authSvc.logout();
+        }
+        return throwError(err);
+      })
+    );
   }
-
 }
