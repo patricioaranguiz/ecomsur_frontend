@@ -23,6 +23,7 @@ phases:
 artifacts:
   files:
 #    - "**/*"
+    - hola.html
     - appspec.yml
     - codedeploy/*
     - dist/**/*
