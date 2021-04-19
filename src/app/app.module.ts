@@ -1,3 +1,4 @@
+import { HeaderComponent } from './components/shared/header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,8 @@ import {AuthInterceptor} from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,16 @@ import {AuthGuard} from './shared/guards/auth.guard';
 const routes: Routes = [{
   path: 'login',
   loadChildren: () => LoginModule,
-  canActivate: [CheckLoginGuard]
+  canActivate: [CheckLoginGuard],
+  data: {showHeader: false}
 },{
   path: 'rr-hh',
-  loadChildren: () => RrHhModule
-}, {
-  path: '**', loadChildren: () => RrHhModule
+  loadChildren: () => RrHhModule,
+  data: {showHeader: true}
+},{
+  path: 'dashboard',
+  loadChildren: () => DashboardModule,
+  data: {showHeader: true}
 }];
 
 @NgModule({
