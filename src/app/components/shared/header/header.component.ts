@@ -1,7 +1,7 @@
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.model';
+import { Authenticated } from 'src/app/models/authenticated.model';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  currentUser: User;
+  currentUser: Authenticated;
 
   constructor(
     private router: Router,
@@ -20,11 +20,11 @@ export class HeaderComponent {
     );
   }
 
-  get isAdmin() {
+  get isAdmin(): any {
     return this.currentUser && this.currentUser.role === '';
   }
 
-  onLogout() {
+  onLogout(): void {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

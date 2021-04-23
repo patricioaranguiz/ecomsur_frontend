@@ -1,28 +1,24 @@
-import { User } from './../models/user.model';
+import { Authenticated } from '../models/authenticated.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
-  private loggedIn = new BehaviorSubject<string>(
-    JSON.parse(sessionStorage.getItem('currentUser'))
-  );
+  private currentUserSubject: BehaviorSubject<Authenticated>;
+  public currentUser: Observable<Authenticated>;
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User>(
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<Authenticated>(
       JSON.parse(sessionStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): Authenticated {
     return this.currentUserSubject.value;
   }
 
@@ -34,7 +30,7 @@ export class AuthService {
     return this.http
       .post('http://localhost:3000/api/login', payload, { headers })
       .pipe(
-        map((result: User) => {
+        map((result: Authenticated) => {
           sessionStorage.setItem('currentUser', JSON.stringify(result));
           this.currentUserSubject.next(result);
           // if (result.role === 'administracion') {

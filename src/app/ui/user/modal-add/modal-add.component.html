@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Nuevo Usuario</h1>
+<form [formGroup]="registerForm" (ngSubmit)="addUser()">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="registerForm.get('username').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+            <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="text" matInput placeholder="Apellido" formControlName="lastName">
+            <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button type="submit" mat-raised-button color="primary">Guardar</button>
+        <button mat-button (click)="closeModal()">Cancelar</button>
+    </div>
+</form>
+

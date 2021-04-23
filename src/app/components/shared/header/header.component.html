@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
   <span>ECOMSUR</span>
+  <a mat-button routerLink="rr-hh" routerLinkActive="active"> Usuarios </a>
+  <a mat-button routerLink="dashboard" routerLinkActive="active"> Dashboard </a>
   <span class="fill-remaining-space"></span>
   {{ currentUser.nombreUsuario }}
   <button mat-button (click)="onLogout()">Logout</button>

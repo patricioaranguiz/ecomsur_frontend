@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { User } from '../models/user.model';
+import { Authenticated } from '../models/authenticated.model';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const currentUser: User = JSON.parse(sessionStorage.getItem('currentUser'));
+    const currentUser: Authenticated = JSON.parse(sessionStorage.getItem('currentUser'));
 
     let request = req;
 
