@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { User } from '../models/user.model';
@@ -30,7 +30,12 @@ export class UsersService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get('http://localhost:3000/api/users', { headers });
+    return this.http.get('http://localhost:3000/api/users', { headers })
+        .pipe(map((item: any) => {
+          return item.map((u) => {
+            return new User(u);
+          });
+        }));
   }
 
   addUser(user: User): Observable<any> {
@@ -38,6 +43,13 @@ export class UsersService {
       'Content-Type': 'application/json',
     });
     return this.http.post('http://localhost:3000/api/user', user, {headers});
+  }
+
+  updateUser(user: User): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.put<boolean>('http://localhost:3000/api/user', user, {headers});
   }
 
 /*  canActivate(): boolean {

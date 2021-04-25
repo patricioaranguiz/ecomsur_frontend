@@ -1,23 +1,36 @@
-
-
 <h1 mat-dialog-title>Editar Usuario</h1>
-<div mat-dialog-content>
-    <p>Username</p>
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.userName" disabled >
-    </mat-form-field>
+<form [formGroup]="registerForm" (ngSubmit)="editUser()">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Username" formControlName="username" [disabled]="true">
+        </mat-form-field>
 
-    <p>Nombre</p>
-    <mat-form-field>
-        <input matInput [(ngModel)]="data.nombreCompleto" >
-    </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+            <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <p>What's your email?</p>
-    <mat-form-field>
-        <input matInput >
-    </mat-form-field>
-</div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button color="primary">Guardar</button>
-    <button mat-button (click)="closeModal()">Cancelar</button>
-</div>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Apellido" formControlName="lastName">
+            <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input type="text" matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                Usuario es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                Debe ingresar un Email válido.
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+        <button type="submit" mat-raised-button color="primary">Guardar</button>
+        <button mat-button (click)="closeModal()">Cancelar</button>
+    </div>
+</form>

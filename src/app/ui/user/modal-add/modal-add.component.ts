@@ -30,7 +30,9 @@ export class ModalAddComponent implements OnInit {
     }
 
     addUser(): void {
-        console.log(this.registerForm.value);
+        if (!this.registerForm.valid) {
+            return;
+        }
         this.userSvc.addUser(this.registerForm.value).subscribe((data) => {
             console.log(data);
         }, error => {

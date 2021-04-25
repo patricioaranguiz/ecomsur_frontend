@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {ModalAddComponent} from '../../ui/user/modal-add/modal-add.component';
@@ -7,59 +7,67 @@ import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.comp
 
 
 @Component({
-  selector: 'app-rr-hh',
-  templateUrl: './rr-hh.component.html',
-  styleUrls: ['./rr-hh.component.css']
+    selector: 'app-rr-hh',
+    templateUrl: './rr-hh.component.html',
+    styleUrls: ['./rr-hh.component.css']
 })
 export class RrHhComponent implements OnInit {
-  displayedColumns: string[] = ['nombreCompleto', 'userName', 'groups', 'action'];
-  dataSource: any[] = [];
-  constructor(private usersService: UsersService,
-              private dialog: MatDialog) { }
+    displayedColumns: string[] = ['username', 'firstName', 'lastName', 'email', 'groups', 'action'];
+    dataSource: any[] = [];
 
-  ngOnInit(): void {
-    this.usersService.getAll()
-      .subscribe((data: any) =>{
-        console.log(data);
-        this.dataSource = data;
-      }, error => {
-        console.log(error);
-      });
-  }
+    constructor(private usersService: UsersService,
+                private dialog: MatDialog) {
+    }
 
-  openModal(): void {
-    const dialogConfig = new MatDialogConfig();
+    ngOnInit(): void {
+        this.getAllUser();
+    }
 
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '500px';
-    dialogConfig.height = '500px';
-    this.dialog.open(ModalAddComponent, dialogConfig);
+    getAllUser(): void {
+        this.usersService.getAll()
+            .subscribe((data: any) => {
+                this.dataSource = data;
+            }, error => {
+                console.log(error);
+            });
+    }
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
-  }
+    openModal(): void {
+        const dialogConfig = new MatDialogConfig();
 
-  editContact(row): void {
-    const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '500px';
+        dialogConfig.height = '500px';
+        const dialogRef = this.dialog.open(ModalAddComponent, dialogConfig);
 
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px';
-    dialogConfig.height = '500px';
-    dialogConfig.data = row;
-    this.dialog.open(ModalEditComponent, dialogConfig);
-  }
+        dialogRef.afterClosed().subscribe(() => {
+            this.getAllUser();
+        });
+    }
 
-  deleteUser(row): void {
-    const dialogConfig = new MatDialogConfig();
+    editContact(row): void {
+        const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px';
-    dialogConfig.height = '200px';
-    dialogConfig.data = row;
-    this.dialog.open(ModalDeleteComponent, dialogConfig);
-  }
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '400px';
+        dialogConfig.height = '500px';
+        dialogConfig.data = row;
+        const dialogRef = this.dialog.open(ModalEditComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(() => {
+            this.getAllUser();
+        });
+    }
+
+    deleteUser(row): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '400px';
+        dialogConfig.height = '200px';
+        dialogConfig.data = row;
+        this.dialog.open(ModalDeleteComponent, dialogConfig);
+    }
 }
