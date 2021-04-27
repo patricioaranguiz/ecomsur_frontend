@@ -29,7 +29,6 @@ export class RrHhComponent implements OnInit {
     getAllUser(): void {
         this.usersService.getAll()
             .subscribe((data: any) => {
-                console.log(data);
                 this.dataSource = data;
             }, error => {
                 console.log(error);

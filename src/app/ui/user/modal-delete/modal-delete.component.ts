@@ -27,7 +27,6 @@ export class ModalDeleteComponent implements OnInit {
     eliminarUsuario(): void {
         this.userSrv.deleteUser(this.data.username)
             .subscribe((data: boolean) => {
-                console.log(data);
                 this.userDeletedSucceed = true;
                 this.closeModal();
             }, error => {
