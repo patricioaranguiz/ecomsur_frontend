@@ -23,8 +23,6 @@ export class AuthGuard implements CanActivate {
     ): boolean {
         const currentUser = this.authSvc.currentUserValue;
         if (currentUser) {
-
-            console.log(currentUser.role.indexOf(route.data.roles));
             if (route.data.roles && currentUser.role.indexOf(route.data.roles) === -1 ){
                 if (currentUser.role.includes('administracion')) {
                     this.router.navigate(['/rr-hh']);

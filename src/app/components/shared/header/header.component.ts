@@ -17,7 +17,6 @@ export class HeaderComponent {
     ) {
         this.authenticationService.currentUser.subscribe((x) => {
             if (x) {
-                console.log(x);
                 this.currentUser = x;
             }
         });
