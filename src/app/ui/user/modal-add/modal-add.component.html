@@ -1,33 +1,104 @@
 <h1 mat-dialog-title>Nuevo Usuario</h1>
 <form [formGroup]="registerForm" (ngSubmit)="addUser()">
     <div mat-dialog-content>
+
         <mat-form-field>
             <input type="text" matInput placeholder="Username" formControlName="username">
-            <mat-error *ngIf="registerForm.get('username').hasError('required')">
-                Usuario es <strong>requerido</strong>
-            </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <input type="text" matInput placeholder="Nombre" formControlName="firstName">
-            <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
-                Usuario es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
 
-        <mat-form-field>
-            <input type="text" matInput placeholder="Apellido" formControlName="lastName">
-            <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
-                Usuario es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Nombre" formControlName="firstName">
+                <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
 
-        <mat-form-field>
-            <input type="text" matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="registerForm.get('email').hasError('required')">
-                Usuario es <strong>requerido</strong>
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Apellido" formControlName="lastName">
+                <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                    Debe ingresar un Email válido.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Rut" formControlName="rut">
+                <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                    Debe ingresar un Email válido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Puesto" formControlName="employment">
+                <mat-error *ngIf="registerForm.get('employment').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                    Debe ingresar un Email válido.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input type="text" matInput placeholder="Departamento" formControlName="department">
+                <mat-error *ngIf="registerForm.get('department').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                    Debe ingresar un Email válido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Compañia" formControlName="company">
+                <mat-error *ngIf="registerForm.get('company').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.get('email').hasError('email')">
+                    Debe ingresar un Email válido.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Nombre Equipo" formControlName="workstations">
+                <mat-error *ngIf="registerForm.get('workstations').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Teléfono" formControlName="phoneNumber">
+                <mat-error *ngIf="registerForm.get('phoneNumber').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Dirección" formControlName="streetAddress">
+                <mat-error *ngIf="registerForm.get('streetAddress').hasError('required')">
+                    Usuario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
     </div>
     <div mat-dialog-actions align="end">
         <button type="submit" mat-raised-button color="primary">Guardar</button>

@@ -52,6 +52,13 @@ export class UsersService {
     return this.http.put<boolean>('http://localhost:3000/api/user', user, {headers});
   }
 
+  deleteUser(username: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.delete('http://localhost:3000/api/user/' + username);
+  }
+
 /*  canActivate(): boolean {
     const token = sessionStorage.getItem('token');
     if (token == null) {

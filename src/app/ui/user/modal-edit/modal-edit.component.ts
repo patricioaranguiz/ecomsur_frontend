@@ -10,11 +10,22 @@ import {User} from '../../../models/user.model';
     styleUrls: ['./modal-edit.component.css']
 })
 export class ModalEditComponent implements OnInit {
+
+    userUpdateSuceed = false;
+
     registerForm: FormGroup = this.formBuilder.group({
-        username: [{value: ''}],
+        username: [, {}],
         firstName: [, {validators: [Validators.required], updateOn: 'change'}],
         lastName: [, {validators: [Validators.required], updateOn: 'change'}],
         email: [, {validators: [Validators.required, Validators.email], updateOn: 'change'}],
+        rut: [, {validators: [Validators.required], updateOn: 'change'}],
+        employment: [, {validators: [Validators.required], updateOn: 'change'}],
+        department: [, {validators: [Validators.required], updateOn: 'change'}],
+        company: [, {validators: [Validators.required], updateOn: 'change'}],
+        streetAddress: [, {validators: [Validators.required], updateOn: 'change'}],
+        workstations: [, {validators: [Validators.required], updateOn: 'change'}],
+        phoneNumber: [, {validators: [Validators.required], updateOn: 'change'}],
+
     });
 
 
@@ -25,31 +36,26 @@ export class ModalEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
-        const {username, firstName, lastName, email} = this.data;
-        this.registerForm.patchValue({
-            username,
-            firstName,
-            lastName,
-            email
-        });
+        this.registerForm.patchValue(this.data);
         this.registerForm.controls.username.disable();
     }
 
     closeModal(): void {
-        this.dialogRef.close();
+        this.dialogRef.close(this.userUpdateSuceed);
     }
 
     editUser(): void {
         if (!this.registerForm.valid) {
             return;
         }
-        this.userSvc.updateUser(this.registerForm.getRawValue()).subscribe((data: boolean) => {
-            if (data) {
-                this.closeModal();
-            }
-        }, error => {
-            console.log(error);
-        });
+        this.userSvc.updateUser(this.registerForm.getRawValue())
+            .subscribe((data: boolean) => {
+                if (data) {
+                    this.userUpdateSuceed = true;
+                    this.closeModal();
+                }
+            }, error => {
+                console.log(error);
+            });
     }
 }

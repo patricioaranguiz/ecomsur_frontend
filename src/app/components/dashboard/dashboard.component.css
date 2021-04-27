@@ -1,0 +1,18 @@
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.box {
+    height: 100px;
+    width: 200px;
+    background: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}

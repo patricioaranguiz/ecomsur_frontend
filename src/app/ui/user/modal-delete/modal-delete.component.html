@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Eliminar Usuario</h1>
 <div mat-dialog-content>
-    <p>Está seguro de eliminar a {{data.nombreCompleto}}?</p>
+    <p>Está seguro de eliminar a {{data.firstName}} {{data.lastName}}?</p>
 </div>
 <div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="eliminarUsuario()">Aceptar</button>
     <button mat-button (click)="closeModal()">Cancelar</button>
-    <button mat-button>Aceptar</button>
 </div>

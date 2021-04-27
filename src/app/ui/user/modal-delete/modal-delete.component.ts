@@ -1,21 +1,37 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {UsersService} from '../../../services/users.service';
+import {User} from '../../../models/user.model';
 
 @Component({
-  selector: 'app-modal-delete',
-  templateUrl: './modal-delete.component.html',
-  styleUrls: ['./modal-delete.component.css']
+    selector: 'app-modal-delete',
+    templateUrl: './modal-delete.component.html',
+    styleUrls: ['./modal-delete.component.css']
 })
 export class ModalDeleteComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ModalDeleteComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+    userDeletedSucceed = false;
 
-  ngOnInit(): void {
-  }
+    constructor(public dialogRef: MatDialogRef<ModalDeleteComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: User,
+                private userSrv: UsersService) {
+    }
 
-  closeModal(): void {
-    this.dialogRef.close();
-  }
+    ngOnInit(): void {
+    }
 
+    closeModal(): void {
+        this.dialogRef.close(this.userDeletedSucceed);
+    }
+
+    eliminarUsuario(): void {
+        this.userSrv.deleteUser(this.data.username)
+            .subscribe((data: boolean) => {
+                console.log(data);
+                this.userDeletedSucceed = true;
+                this.closeModal();
+            }, error => {
+                console.log(error);
+            });
+    }
 }

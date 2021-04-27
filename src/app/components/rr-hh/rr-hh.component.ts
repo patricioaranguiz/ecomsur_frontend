@@ -5,6 +5,8 @@ import {ModalAddComponent} from '../../ui/user/modal-add/modal-add.component';
 import {ModalEditComponent} from '../../ui/user/modal-edit/modal-edit.component';
 import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.component';
 
+import {Toast, ToastrService} from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-rr-hh',
@@ -16,7 +18,8 @@ export class RrHhComponent implements OnInit {
     dataSource: any[] = [];
 
     constructor(private usersService: UsersService,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                private tostr: ToastrService) {
     }
 
     ngOnInit(): void {
@@ -26,6 +29,7 @@ export class RrHhComponent implements OnInit {
     getAllUser(): void {
         this.usersService.getAll()
             .subscribe((data: any) => {
+                console.log(data);
                 this.dataSource = data;
             }, error => {
                 console.log(error);
@@ -41,8 +45,11 @@ export class RrHhComponent implements OnInit {
         dialogConfig.height = '500px';
         const dialogRef = this.dialog.open(ModalAddComponent, dialogConfig);
 
-        dialogRef.afterClosed().subscribe(() => {
-            this.getAllUser();
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuario creado con exito');
+                this.getAllUser();
+            }
         });
     }
 
@@ -51,12 +58,15 @@ export class RrHhComponent implements OnInit {
 
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
-        dialogConfig.width = '400px';
+        dialogConfig.width = '500px';
         dialogConfig.height = '500px';
         dialogConfig.data = row;
         const dialogRef = this.dialog.open(ModalEditComponent, dialogConfig);
-        dialogRef.afterClosed().subscribe(() => {
-            this.getAllUser();
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuario editado con exito');
+                this.getAllUser();
+            }
         });
     }
 
@@ -68,6 +78,12 @@ export class RrHhComponent implements OnInit {
         dialogConfig.width = '400px';
         dialogConfig.height = '200px';
         dialogConfig.data = row;
-        this.dialog.open(ModalDeleteComponent, dialogConfig);
+        const dialogRef = this.dialog.open(ModalDeleteComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuario eliminado con exito');
+                this.getAllUser();
+            }
+        });
     }
 }

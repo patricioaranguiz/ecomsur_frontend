@@ -1,6 +1,11 @@
-<button mat-raised-button color="primary" (click)="openModal()">Nuevo</button>
-<h3>Listado de Usuarios</h3>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div style="margin: 20px">
+
+
+<h2>Listado de Usuarios</h2>
+<div align="end" style="margin-top: 10px">
+    <button mat-raised-button color="primary" (click)="openModal()" >Nuevo Usuario</button>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top: 10px">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -56,5 +61,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-
+</div>
 

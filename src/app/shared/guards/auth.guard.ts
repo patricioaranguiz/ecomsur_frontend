@@ -23,13 +23,24 @@ export class AuthGuard implements CanActivate {
     ): boolean {
         const currentUser = this.authSvc.currentUserValue;
         if (currentUser) {
-            // check if route is restricted by role
-            currentUser.role.map((rol) => {
-                if (
-                    route.data.roles &&
+
+            console.log(currentUser.role.indexOf(route.data.roles));
+            if (route.data.roles && currentUser.role.indexOf(route.data.roles) === -1 ){
+                if (currentUser.role.includes('administracion')) {
+                    this.router.navigate(['/rr-hh']);
+                } else if (currentUser.role.includes('dashboard')) {
+                    this.router.navigate(['/dashboard']);
+                }
+                // role not authorised so redirect to home page
+                // this.router.navigate(['/']);
+                return false;
+            }
+
+            /*currentUser.role.map((rol) => {
+                console.log(route.data.roles.indexOf(rol));
+                if (route.data.roles &&
                     route.data.roles.indexOf(rol) === -1 &&
-                    rol !== 'Administradores'
-                ) {
+                    rol !== 'Administradores') {
                     if (currentUser.role.includes('administracion')) {
                         this.router.navigate(['/rr-hh']);
                     } else if (currentUser.role.includes('dashboard')) {
@@ -39,7 +50,7 @@ export class AuthGuard implements CanActivate {
                     // this.router.navigate(['/']);
                     return false;
                 }
-            });
+            });*/
 
             // authorised so return true
             return true;

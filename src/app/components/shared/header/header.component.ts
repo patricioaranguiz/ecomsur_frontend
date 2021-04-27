@@ -17,13 +17,18 @@ export class HeaderComponent {
     ) {
         this.authenticationService.currentUser.subscribe((x) => {
             if (x) {
+                console.log(x);
                 this.currentUser = x;
             }
         });
     }
 
-    get isAdmin(): any {
-        return this.currentUser && this.currentUser.role.indexOf('administracion');
+    get isDashboard(): any {
+        return this.currentUser && this.currentUser.role.includes('dashboard');
+    }
+
+    get isRrhh(): any {
+        return this.currentUser && this.currentUser.role.includes('administracion');
     }
 
     onLogout(): void {
