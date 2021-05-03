@@ -85,19 +85,13 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Nombre Equipo" formControlName="workstations">
-                <mat-error *ngIf="registerForm.get('workstations').hasError('required')">
-                    Usuario es <strong>requerido</strong>
-                </mat-error>
-            </mat-form-field>
-        </div>
-        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
-            <mat-form-field>
                 <input type="text" matInput placeholder="Teléfono" formControlName="phoneNumber" maxlength="9" numbersOnly>
                 <mat-error *ngIf="registerForm.get('phoneNumber').hasError('required')">
                     Teléfono es <strong>requerido</strong>
                 </mat-error>
             </mat-form-field>
+        </div>
+        <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
             <mat-form-field>
                 <input type="text" matInput placeholder="Dirección" formControlName="streetAddress">
                 <mat-error *ngIf="registerForm.get('streetAddress').hasError('required')">

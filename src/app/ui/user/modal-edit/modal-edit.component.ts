@@ -119,7 +119,6 @@ this.registerForm = this.formBuilder.group({
     department: [undefined, {validators: [Validators.required], updateOn: 'change'}],
     company: [undefined, {validators: [Validators.required], updateOn: 'change'}],
     streetAddress: [undefined, {validators: [Validators.required], updateOn: 'change'}],
-    workstations: [undefined, {validators: [Validators.required], updateOn: 'change'}],
     phoneNumber: [undefined, {validators: [Validators.required], updateOn: 'change'}],
     groups: []
 

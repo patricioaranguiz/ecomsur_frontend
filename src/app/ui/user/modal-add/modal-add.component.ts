@@ -117,7 +117,6 @@ export class ModalAddComponent implements OnInit {
             department: [, {validators: [Validators.required], updateOn: 'change'}],
             company: [, {validators: [Validators.required], updateOn: 'change'}],
             streetAddress: [, {validators: [Validators.required], updateOn: 'change'}],
-            workstations: [, {validators: [Validators.required], updateOn: 'change'}],
             phoneNumber: [, {validators: [Validators.required], updateOn: 'change'}],
             groups: []
         });
