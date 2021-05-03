@@ -41,7 +41,7 @@ export class RrHhComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '500px';
-        dialogConfig.height = '500px';
+        dialogConfig.height = '560px';
         const dialogRef = this.dialog.open(ModalAddComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe((data) => {
@@ -58,7 +58,7 @@ export class RrHhComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '500px';
-        dialogConfig.height = '500px';
+        dialogConfig.height = '560px';
         dialogConfig.data = row;
         const dialogRef = this.dialog.open(ModalEditComponent, dialogConfig);
         dialogRef.afterClosed().subscribe((data) => {

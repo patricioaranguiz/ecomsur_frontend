@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import { Router } from '@angular/router';
-
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   login(payload: any): Observable<any> {
     const headers = new HttpHeaders({

@@ -12,8 +12,9 @@ import {ModalAddComponent} from './ui/user/modal-add/modal-add.component';
 import {ModalEditComponent} from './ui/user/modal-edit/modal-edit.component';
 import {ModalDeleteComponent} from './ui/user/modal-delete/modal-delete.component';
 import {ToastrModule} from 'ngx-toastr';
-
+import { Ng9RutModule } from 'ng9-rut';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { NumberDirective } from './directives/numbers-only.directive';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
         HeaderComponent,
         ModalAddComponent,
         ModalEditComponent,
-        ModalDeleteComponent
+        ModalDeleteComponent,
+        NumberDirective
     ],
     imports: [
         BrowserModule,
@@ -32,7 +34,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
         HttpClientModule,
         FormsModule,
         ToastrModule.forRoot(),
-        FlexLayoutModule
+        FlexLayoutModule,
+        Ng9RutModule
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
