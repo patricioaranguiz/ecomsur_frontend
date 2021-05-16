@@ -15,6 +15,7 @@ import {ToastrModule} from 'ngx-toastr';
 import { Ng9RutModule } from 'ng9-rut';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NumberDirective } from './directives/numbers-only.directive';
+import { ModalAddMassiveComponent } from './ui/user/modal-add-massive/modal-add-massive.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { NumberDirective } from './directives/numbers-only.directive';
         ModalAddComponent,
         ModalEditComponent,
         ModalDeleteComponent,
-        NumberDirective
+        NumberDirective,
+        ModalAddMassiveComponent
     ],
     imports: [
         BrowserModule,

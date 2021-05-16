@@ -5,6 +5,8 @@ import {ModalAddComponent} from '../../ui/user/modal-add/modal-add.component';
 import {ModalEditComponent} from '../../ui/user/modal-edit/modal-edit.component';
 import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.component';
 
+import {ModalAddMassiveComponent} from '../../ui/user/modal-add-massive/modal-add-massive.component';
+
 import {Toast, ToastrService} from 'ngx-toastr';
 
 
@@ -81,6 +83,22 @@ export class RrHhComponent implements OnInit {
         dialogRef.afterClosed().subscribe((data) => {
             if (data) {
                 this.tostr.success('Usuario eliminado con exito');
+                this.getAllUser();
+            }
+        });
+    }
+
+    openModalAddMassive(): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '500px';
+        dialogConfig.height = '200px';
+        const dialogRef = this.dialog.open(ModalAddMassiveComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuarios creados con exito');
                 this.getAllUser();
             }
         });
