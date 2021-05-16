@@ -57,6 +57,10 @@ export class UsersService {
     return this.http.delete('http://localhost:3000/api/user/' + username);
   }
 
+  addUserMassive(form: FormData): Observable<any> {
+    return this.http.post('http://localhost:3000/api/user/massive', form);
+  }
+
 /*  canActivate(): boolean {
     const token = sessionStorage.getItem('token');
     if (token == null) {
