@@ -13,7 +13,9 @@ export class DashboardService {
     return this.http.get('http://localhost:3000/api/charts/groupsAndMember');
   }
 
-
+  getCountMemberOfDepartament(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/charts/getMemberOfDeparment');
+  }
 
   getCountComputerOfSo(): Observable<any>{
     return this.http.get('http://localhost:3000/api/charts/computers');
