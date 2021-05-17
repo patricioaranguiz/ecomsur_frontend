@@ -16,6 +16,7 @@ import { Ng9RutModule } from 'ng9-rut';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NumberDirective } from './directives/numbers-only.directive';
 import { ModalAddMassiveComponent } from './ui/user/modal-add-massive/modal-add-massive.component';
+import { ModalDeleteMassiveComponent } from './ui/user/modal-delete-massive/modal-delete-massive.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { ModalAddMassiveComponent } from './ui/user/modal-add-massive/modal-add-
         ModalEditComponent,
         ModalDeleteComponent,
         NumberDirective,
-        ModalAddMassiveComponent
+        ModalAddMassiveComponent,
+        ModalDeleteMassiveComponent
     ],
     imports: [
         BrowserModule,
