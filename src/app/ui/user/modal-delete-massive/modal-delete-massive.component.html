@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Agregar Usuarios Masivos</h1>
+<h1 mat-dialog-title>Eliminar Usuarios Masivos</h1>
 <div mat-dialog-content style="height: 50px">
     <input type="file" class="file-input"
            (change)="onFileSelected($event)" #fileUpload>
@@ -11,6 +11,6 @@
     </div>
 </div>
 <div mat-dialog-actions align="end">
-    <button type="button" mat-raised-button color="primary" (click)="saveUserMassive()">Aceptar</button>
+    <button type="button" mat-raised-button color="primary" (click)="deleteUserMassive()">Aceptar</button>
     <button mat-button type="button" (click)="closeModal()">Cancelar</button>
 </div>

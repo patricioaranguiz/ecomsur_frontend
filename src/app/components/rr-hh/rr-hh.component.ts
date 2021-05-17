@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {UsersService} from '../../services/users.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+
+import {Toast, ToastrService} from 'ngx-toastr';
+
+import {UsersService} from '../../services/users.service';
 import {ModalAddComponent} from '../../ui/user/modal-add/modal-add.component';
 import {ModalEditComponent} from '../../ui/user/modal-edit/modal-edit.component';
 import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.component';
-
 import {ModalAddMassiveComponent} from '../../ui/user/modal-add-massive/modal-add-massive.component';
-
-import {Toast, ToastrService} from 'ngx-toastr';
+import {ModalDeleteMassiveComponent} from '../../ui/user/modal-delete-massive/modal-delete-massive.component';
 
 
 @Component({
@@ -99,6 +100,22 @@ export class RrHhComponent implements OnInit {
         dialogRef.afterClosed().subscribe((data) => {
             if (data) {
                 this.tostr.success('Usuarios creados con exito');
+                this.getAllUser();
+            }
+        });
+    }
+
+    openModalDeleteMassive(): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '500px';
+        dialogConfig.height = '200px';
+        const dialogRef = this.dialog.open(ModalDeleteMassiveComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuarios eliminados con exito');
                 this.getAllUser();
             }
         });
