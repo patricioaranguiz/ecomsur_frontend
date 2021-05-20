@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Eliminar Usuarios Masivos</h1>
-<div mat-dialog-content style="height: 50px">
+<div mat-dialog-content style="height: 110px">
     <input type="file" class="file-input"
            (change)="onFileSelected($event)" #fileUpload>
     <div class="file-upload">
@@ -8,6 +8,12 @@
                 (click)="fileUpload.click()">
             <mat-icon>attach_file</mat-icon>
         </button>
+    </div>
+    <div style="margin-top: 20px">
+        <a target="_self" href="./assets/DeleteUsers_.csv" mat-mini-fab color="primary" class="upload-btn"
+           title="Descargar Archivo Ejemplo" download="DeleteUsers_.csv" >
+            <mat-icon>download</mat-icon>
+        </a>
     </div>
 </div>
 <div mat-dialog-actions align="end">

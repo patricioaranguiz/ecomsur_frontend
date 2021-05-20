@@ -8,6 +8,7 @@ import {ModalAddComponent} from '../../ui/user/modal-add/modal-add.component';
 import {ModalEditComponent} from '../../ui/user/modal-edit/modal-edit.component';
 import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.component';
 import {ModalAddMassiveComponent} from '../../ui/user/modal-add-massive/modal-add-massive.component';
+import {ModalEditMassiveComponent} from '../../ui/user/modal-edit-massive/modal-edit-massive.component';
 import {ModalDeleteMassiveComponent} from '../../ui/user/modal-delete-massive/modal-delete-massive.component';
 
 
@@ -78,7 +79,7 @@ export class RrHhComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '400px';
-        dialogConfig.height = '200px';
+        dialogConfig.height = '260px';
         dialogConfig.data = row;
         const dialogRef = this.dialog.open(ModalDeleteComponent, dialogConfig);
         dialogRef.afterClosed().subscribe((data) => {
@@ -95,7 +96,7 @@ export class RrHhComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '500px';
-        dialogConfig.height = '200px';
+        dialogConfig.height = '260px';
         const dialogRef = this.dialog.open(ModalAddMassiveComponent, dialogConfig);
         dialogRef.afterClosed().subscribe((data) => {
             if (data) {
@@ -111,11 +112,27 @@ export class RrHhComponent implements OnInit {
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = true;
         dialogConfig.width = '500px';
-        dialogConfig.height = '200px';
+        dialogConfig.height = '260px';
         const dialogRef = this.dialog.open(ModalDeleteMassiveComponent, dialogConfig);
         dialogRef.afterClosed().subscribe((data) => {
             if (data) {
                 this.tostr.success('Usuarios eliminados con exito');
+                this.getAllUser();
+            }
+        });
+    }
+
+    openModalEditMassive(): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '500px';
+        dialogConfig.height = '260px';
+        const dialogRef = this.dialog.open(ModalEditMassiveComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('Usuarios Actualizados con exito');
                 this.getAllUser();
             }
         });

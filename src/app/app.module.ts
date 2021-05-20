@@ -17,6 +17,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { NumberDirective } from './directives/numbers-only.directive';
 import { ModalAddMassiveComponent } from './ui/user/modal-add-massive/modal-add-massive.component';
 import { ModalDeleteMassiveComponent } from './ui/user/modal-delete-massive/modal-delete-massive.component';
+import { ModalEditMassiveComponent } from './ui/user/modal-edit-massive/modal-edit-massive.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { ModalDeleteMassiveComponent } from './ui/user/modal-delete-massive/moda
         ModalDeleteComponent,
         NumberDirective,
         ModalAddMassiveComponent,
-        ModalDeleteMassiveComponent
+        ModalDeleteMassiveComponent,
+        ModalEditMassiveComponent
     ],
     imports: [
         BrowserModule,

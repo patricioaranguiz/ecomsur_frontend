@@ -58,18 +58,14 @@ export class UsersService {
         return this.http.delete('http://localhost:3000/api/user/' + username);
     }
 
-    addUserMassive(form: FormData): Observable<any> {
-        return this.http.post('http://localhost:3000/api/user/massive/add', form);
+    addUserMassive(formData: FormData): Observable<any> {
+        return this.http.post('http://localhost:3000/api/user/massive/add', formData);
     }
 
-    /*  canActivate(): boolean {
-        const token = sessionStorage.getItem('token');
-        if (token == null) {
-          this.router.navigate(['login']);
-          return false;
-        }
-        return true;
-      }*/
+    editUserMassive(formData: FormData): Observable<any> {
+        return this.http.post('http://localhost:3000/api/user/massive/edit', formData);
+    }
+
     deleteUserMassive(formData: FormData): Observable<any> {
         return this.http.post('http://localhost:3000/api/user/massive/delete', formData);
     }
