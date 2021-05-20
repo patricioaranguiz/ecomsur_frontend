@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {map, startWith} from 'rxjs/operators';
-import {GroupsService} from '../../../services/groups.service';
+import {CommonService} from '../../../services/common.service';
 import {RutValidator} from 'ng9-rut';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -57,24 +57,7 @@ export class ModalAddComponent implements OnInit {
         description: 'ECOMSUR BRASIL'
     }];
 
-    departments = [
-        {
-            value: 'MARKETING',
-            description: 'MARKETING'
-        },
-        {
-            value: 'TI',
-            description: 'TI'
-        },
-        {
-            value: 'VENTAS',
-            description: 'VENTAS'
-        },
-        {
-            value: 'RRHH',
-            description: 'RRHH'
-        }
-    ];
+    departments = [];
 
     employments = [{
         value: 'JEFE DE PROYECTOS',
@@ -105,7 +88,7 @@ export class ModalAddComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private userSvc: UsersService,
                 private toastr: ToastrService,
-                private groupSvc: GroupsService,
+                private commonSrv: CommonService,
                 private rv: RutValidator) {
         this.registerForm = this.formBuilder.group({
             username: [, {validators: [Validators.required], updateOn: 'change'}],
@@ -123,13 +106,24 @@ export class ModalAddComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.groupSvc.getAllGroups().subscribe((item: string[]) => {
+        this.commonSrv.getAllGroups().subscribe((item: string[]) => {
             this.arrayListGroupsAvalaible = Object.assign([], item);
             this.arrayListGroups = Object.assign([], item);
             this.filteredFruits = this.userGroups.valueChanges.pipe(
                 startWith(null),
                 map((fruit: string | null) => fruit ? this._filter(fruit) : this._checkGroups()));
         });
+
+        this.commonSrv.getAllDepartments()
+            .subscribe((departments) => {
+                departments.map(item => {
+                    console.log(item);
+                    this.departments.push({
+                        value: item.name,
+                        description: item.name
+                    });
+                });
+            });
     }
 
     closeModal(): void {

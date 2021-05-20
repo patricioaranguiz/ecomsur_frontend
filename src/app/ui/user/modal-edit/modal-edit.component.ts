@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
-import {GroupsService} from '../../../services/groups.service';
+import {CommonService} from '../../../services/common.service';
 import {RutValidator} from 'ng9-rut';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -58,22 +58,6 @@ export class ModalEditComponent implements OnInit {
         description: 'ECOMSUR BRASIL'
     }];
     departments = [
-        {
-            value: 'MARKETING',
-            description: 'MARKETING'
-        },
-        {
-            value: 'TI',
-            description: 'TI'
-        },
-        {
-            value: 'VENTAS',
-            description: 'VENTAS'
-        },
-        {
-            value: 'RRHH',
-            description: 'RRHH'
-        }
     ];
 
     employments = [{
@@ -106,7 +90,7 @@ export class ModalEditComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: User,
                 private formBuilder: FormBuilder,
                 private userSvc: UsersService,
-                private groupSvc: GroupsService,
+                private commonSrv: CommonService,
                 private rv: RutValidator) {
 
 this.registerForm = this.formBuilder.group({
@@ -130,13 +114,23 @@ this.registerForm = this.formBuilder.group({
         this.groups = this.data.groups.length === 0 ? [] : this.data.groups;
         this.userGroups.setValue(this.data.groups.length === 0 ? [] : this.data.groups);
         this.registerForm.controls.username.disable();
-        this.groupSvc.getAllGroups().subscribe((item: string[]) => {
+        this.commonSrv.getAllGroups().subscribe((item: string[]) => {
             this.arrayListGroupsAvalaible = Object.assign([], item);
             this.arrayListGroups = Object.assign([], item);
             this.filteredFruits = this.userGroups.valueChanges.pipe(
                 startWith(null),
                 map((fruit: string | null) => fruit ? this._filter(fruit) : this._checkGroups()));
         });
+        this.commonSrv.getAllDepartments()
+            .subscribe((departments) => {
+                departments.map(item => {
+                    console.log(item);
+                    this.departments.push({
+                        value: item.name,
+                        description: item.name
+                    });
+                });
+            });
     }
 
     closeModal(): void {
