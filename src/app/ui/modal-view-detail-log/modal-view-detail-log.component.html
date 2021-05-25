@@ -1,0 +1,159 @@
+<h1 mat-dialog-title>Detalle</h1>
+<div mat-dialog-content>
+    <div fxLayout="row" fxLayoutAlign="start">
+        <div style="width: 50%">
+            <div>Valores Anterior</div>
+            <div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Username</mat-label>
+                        <input matInput [(ngModel)]="dataAnterior.username" [name]="dataAnterior.username" disabled>
+                    </mat-form-field>
+
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Nombre" [(ngModel)]="dataAnterior.firstName" [name]="dataAnterior.firstName"
+                               disabled>
+                    </mat-form-field>
+                    <mat-form-field appearance="none">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput placeholder="Apellido" [(ngModel)]="dataAnterior.lastName" [name]="dataAnterior.lastName"
+                               disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Email</mat-label>
+                        <input type="text" matInput [(ngModel)]="dataAnterior.email" [name]="dataAnterior.email" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Rut</mat-label>
+                        <input type="text" matInput formatRut [(ngModel)]="dataAnterior.rut" [name]="dataAnterior.rut" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Puesto</mat-label>
+                        <input type="text" matInput [(ngModel)]="dataAnterior.employment" [name]="dataAnterior.employment" disabled>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Departamento</mat-label>
+                        <input type="text" matInput [(ngModel)]="dataAnterior.department" [name]="dataAnterior.department" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Compañia</mat-label>
+                        <input type="text" matInput [(ngModel)]="dataAnterior.company" [name]="dataAnterior.company" disabled>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Teléfono</mat-label>
+                        <input type="text" matInput placeholder="Teléfono" [(ngModel)]="dataAnterior.phoneNumber" maxlength="9"
+                               numbersOnly disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Dirección</mat-label>
+                        <input type="text" matInput placeholder="Dirección" [(ngModel)]="dataAnterior.streetAddress" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Grupos</mat-label>
+                        <input type="text" matInput [(ngModel)]="dataAnterior.groups" disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+        <mat-divider class="verticalLine" [vertical]="true"></mat-divider>
+        <div style="width: 50%">
+            <div>Valores Nuevos</div>
+            <div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Username</mat-label>
+                        <input matInput
+                               [(ngModel)]="dataNueva.username"
+                               [name]="dataNueva.username"
+                               disabled>
+                    </mat-form-field>
+
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Nombre</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.firstName !== dataAnterior.firstName}" matInput
+                               placeholder="Nombre" [(ngModel)]="dataNueva.firstName" [name]="dataNueva.firstName" disabled>
+                    </mat-form-field>
+                    <mat-form-field appearance="none">
+                        <mat-label>Apellido</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.lastName !== dataAnterior.lastName}" matInput
+                               placeholder="Apellido" [(ngModel)]="dataNueva.lastName" [name]="dataNueva.lastName" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Email</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.email !== dataAnterior.email}" type="text" matInput
+                               [(ngModel)]="dataNueva.email" [name]="dataNueva.email" disabled>
+                    </mat-form-field>
+
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Rut</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.rut !== dataAnterior.rut}" type="text" matInput
+                               formatRut [(ngModel)]="dataNueva.rut" [name]="dataNueva.rut" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Puesto</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.employment !== dataAnterior.employment}" type="text" matInput
+                               [(ngModel)]="dataNueva.employment" [name]="dataNueva.employment" disabled>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Departamento</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.department !== dataAnterior.department}" type="text" matInput
+                               [(ngModel)]="dataNueva.department" [name]="dataNueva.department" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Compañia</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.company !== dataAnterior.company}" type="text" matInput
+                               [(ngModel)]="dataNueva.company" [name]="dataNueva.company" disabled>
+                    </mat-form-field>
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Teléfono</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.phoneNumber !== dataAnterior.phoneNumber}" type="text" matInput
+                               placeholder="Teléfono" [(ngModel)]="dataNueva.phoneNumber" maxlength="9"
+                               numbersOnly disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Dirección</mat-label>
+                        <input [ngClass]="{'changeField': dataNueva.streetAddress !== dataAnterior.streetAddress}" type="text" matInput
+                               placeholder="Dirección" [(ngModel)]="dataNueva.streetAddress" disabled>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxFlexFill fxLayout.lt-sm="column" fxLayoutGap="16px">
+                    <mat-form-field floatLabel="auto" appearance="none">
+                        <mat-label>Grupos</mat-label>
+
+                        <input [ngClass]="{'changeField': check(dataNueva.groups)}" type="text" matInput
+                               [(ngModel)]="dataNueva.groups" disabled>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button type="button" mat-raised-button color="primary" (click)="closeModal()">Aceptar</button>
+</div>
+

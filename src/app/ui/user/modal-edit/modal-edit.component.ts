@@ -138,6 +138,7 @@ this.registerForm = this.formBuilder.group({
     }
 
     editUser(): void {
+        console.log(this.registerForm.valid);
         if (!this.registerForm.valid) {
             return;
         }

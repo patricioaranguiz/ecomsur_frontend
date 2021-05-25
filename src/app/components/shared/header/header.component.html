@@ -2,6 +2,7 @@
   <span>ECOMSUR</span>
   <a *ngIf="isDashboard" mat-button routerLink="dashboard" routerLinkActive="active"> Dashboard </a>
   <a *ngIf="isRrhh" mat-button routerLink="rr-hh" routerLinkActive="active"> Usuarios </a>
+  <a *ngIf="isRrhh" mat-button routerLink="auditoria" routerLinkActive="active"> Auditoría </a>
   <span class="fill-remaining-space"></span>
   {{ currentUser.nombreUsuario }}
   <button mat-icon-button class="end" (click)="onLogout()" style="margin:0 15px 0 15px">

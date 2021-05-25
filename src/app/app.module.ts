@@ -18,6 +18,8 @@ import { NumberDirective } from './directives/numbers-only.directive';
 import { ModalAddMassiveComponent } from './ui/user/modal-add-massive/modal-add-massive.component';
 import { ModalDeleteMassiveComponent } from './ui/user/modal-delete-massive/modal-delete-massive.component';
 import { ModalEditMassiveComponent } from './ui/user/modal-edit-massive/modal-edit-massive.component';
+import { ModalViewDetailLogComponent } from './ui/modal-view-detail-log/modal-view-detail-log.component';
+import { ModalChangePasswordComponent } from './ui/user/modal-change-password/modal-change-password.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,9 @@ import { ModalEditMassiveComponent } from './ui/user/modal-edit-massive/modal-ed
         NumberDirective,
         ModalAddMassiveComponent,
         ModalDeleteMassiveComponent,
-        ModalEditMassiveComponent
+        ModalEditMassiveComponent,
+        ModalViewDetailLogComponent,
+        ModalChangePasswordComponent
     ],
     imports: [
         BrowserModule,

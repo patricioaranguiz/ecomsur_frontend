@@ -10,7 +10,7 @@ import {ModalDeleteComponent} from '../../ui/user/modal-delete/modal-delete.comp
 import {ModalAddMassiveComponent} from '../../ui/user/modal-add-massive/modal-add-massive.component';
 import {ModalEditMassiveComponent} from '../../ui/user/modal-edit-massive/modal-edit-massive.component';
 import {ModalDeleteMassiveComponent} from '../../ui/user/modal-delete-massive/modal-delete-massive.component';
-
+import { ModalChangePasswordComponent } from '../../ui/user/modal-change-password/modal-change-password.component';
 
 @Component({
     selector: 'app-rr-hh',
@@ -85,6 +85,23 @@ export class RrHhComponent implements OnInit {
         dialogRef.afterClosed().subscribe((data) => {
             if (data) {
                 this.tostr.success('Usuario eliminado con exito');
+                this.getAllUser();
+            }
+        });
+    }
+
+    changePassword(row): void {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+        dialogConfig.width = '410px';
+        dialogConfig.height = '190px';
+        dialogConfig.data = row;
+        const dialogRef = this.dialog.open(ModalChangePasswordComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe((data) => {
+            if (data) {
+                this.tostr.success('La contraseña ha sido cambiada con éxito');
                 this.getAllUser();
             }
         });

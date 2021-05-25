@@ -69,4 +69,11 @@ export class UsersService {
     deleteUserMassive(formData: FormData): Observable<any> {
         return this.http.post('http://localhost:3000/api/user/massive/delete', formData);
     }
+
+    changePassword(username): Observable<any> {
+        const body = {
+            username
+        };
+        return this.http.post('http://localhost:3000/api/user/changepassword', body);
+    }
 }

@@ -48,7 +48,8 @@ const materialModules = [
     MatListModule,
     MatSelectModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatPaginatorModule
 ];
 
 @NgModule({
