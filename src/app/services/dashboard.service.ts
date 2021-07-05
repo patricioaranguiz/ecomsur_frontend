@@ -21,4 +21,8 @@ export class DashboardService {
     return this.http.get('http://localhost:3000/api/charts/computers');
   }
 
+    getCountEmployments(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/charts/getMemberOfEmployment');
+
+    }
 }
