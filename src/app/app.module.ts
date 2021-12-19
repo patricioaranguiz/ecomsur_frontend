@@ -20,6 +20,7 @@ import { ModalDeleteMassiveComponent } from './ui/user/modal-delete-massive/moda
 import { ModalEditMassiveComponent } from './ui/user/modal-edit-massive/modal-edit-massive.component';
 import { ModalViewDetailLogComponent } from './ui/modal-view-detail-log/modal-view-detail-log.component';
 import { ModalChangePasswordComponent } from './ui/user/modal-change-password/modal-change-password.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ModalChangePasswordComponent } from './ui/user/modal-change-password/mo
         ModalDeleteMassiveComponent,
         ModalEditMassiveComponent,
         ModalViewDetailLogComponent,
-        ModalChangePasswordComponent
+        ModalChangePasswordComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
